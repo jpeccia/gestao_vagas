@@ -2,14 +2,10 @@ package com.jpeccia.gestao_vagas.modules.candidate.controllers;
 
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jpeccia.gestao_vagas.exceptions.UserFoundException;
 import com.jpeccia.gestao_vagas.modules.candidate.CandidateEntity;
-import com.jpeccia.gestao_vagas.modules.candidate.CandidateRepository;
 import com.jpeccia.gestao_vagas.modules.candidate.useCases.CreateCandidateUseCase;
 
 import jakarta.validation.Valid;
-
-import javax.swing.RepaintManager;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
