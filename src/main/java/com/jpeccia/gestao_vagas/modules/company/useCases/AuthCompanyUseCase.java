@@ -38,7 +38,7 @@ public class AuthCompanyUseCase {
             }
 
             Algorithm algorithm = Algorithm.HMAC256(secretKey);
-            var token = JWT.create().withIssuer("javagas")
+            var token = JWT.create().withIssuer("jpeccia")
                 .withSubject(company.getId().toString())
                 .sign(algorithm);
 
