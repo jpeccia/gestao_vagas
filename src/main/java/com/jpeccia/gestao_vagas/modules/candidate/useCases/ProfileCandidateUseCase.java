@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.jpeccia.gestao_vagas.modules.candidate.CandidateEntity;
 import com.jpeccia.gestao_vagas.modules.candidate.CandidateRepository;
+import com.jpeccia.gestao_vagas.modules.candidate.dto.ProfileCandidateResponseDTO;
 
 @Service
 public class ProfileCandidateUseCase {
@@ -15,11 +16,19 @@ public class ProfileCandidateUseCase {
     @Autowired
     private CandidateRepository candidateRepository;
 
-    public CandidateEntity execute(UUID idCandidate) {
+    public ProfileCandidateResponseDTO execute(UUID idCandidate) {
         var candidate = this.candidateRepository.findById(idCandidate)
         .orElseThrow(() -> {
             throw new UsernameNotFoundException("User not found");
         });
-        return candidate;
+
+        var candidateDTO = ProfileCandidateResponseDTO.builder()
+            .description(candidate.getDescription())
+            .username(candidate.getUsername())
+            .email(candidate.getEmail())
+            .name(candidate.getName())
+            .id(candidate.getId())
+            .build();
+        return candidateDTO;
     }
 }
