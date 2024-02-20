@@ -6,7 +6,10 @@ import com.jpeccia.gestao_vagas.modules.candidate.CandidateEntity;
 import com.jpeccia.gestao_vagas.modules.candidate.useCases.CreateCandidateUseCase;
 import com.jpeccia.gestao_vagas.modules.candidate.useCases.ProfileCandidateUseCase;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
+
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -40,9 +43,11 @@ public class CandidateController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<Object> get() {
+    public ResponseEntity<Object> get(HttpServletRequest request) {
+
+        var idCandidate = request.getAttribute("candidate_id");
         try {
-            var profile = this.profileCandidateUseCase.execute(null);
+            var profile = this.profileCandidateUseCase.execute(UUID.fromString(idCandidate.toString()));
 
             return ResponseEntity.ok().body(profile);
         } catch (Exception e) {
