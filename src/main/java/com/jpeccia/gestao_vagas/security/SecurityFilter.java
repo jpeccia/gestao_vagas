@@ -20,9 +20,12 @@ public class SecurityFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
             
             String header = request.getHeader("Authorization");
-            System.out.println(header);
+
+            if(header != null) {
+
+            }
             
-        throw new UnsupportedOperationException("Unimplemented method 'doFilterInternal'");
-    }
+            filterChain.doFilter(request, response);
+        }
     
 }
