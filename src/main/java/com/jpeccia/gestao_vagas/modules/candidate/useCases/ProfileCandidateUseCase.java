@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.jpeccia.gestao_vagas.modules.candidate.CandidateEntity;
 import com.jpeccia.gestao_vagas.modules.candidate.CandidateRepository;
 import com.jpeccia.gestao_vagas.modules.candidate.dto.ProfileCandidateResponseDTO;
 
