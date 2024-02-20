@@ -16,6 +16,7 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.jpeccia.gestao_vagas.modules.candidate.CandidateRepository;
 import com.jpeccia.gestao_vagas.modules.candidate.dto.AuthCandidateRequestDTO;
+import com.jpeccia.gestao_vagas.modules.candidate.dto.AuthCandidateResponseDTO;
 
 @Service
 public class AuthCandidateUseCase {
@@ -29,7 +30,7 @@ public class AuthCandidateUseCase {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public void execute(AuthCandidateRequestDTO authCandidateRequestDTO) throws AuthenticationException {
+    public AuthCandidateResponseDTO execute(AuthCandidateRequestDTO authCandidateRequestDTO) throws AuthenticationException {
         var candidate = this.candidateRepository.findByUsername(authCandidateRequestDTO.username())
         .orElseThrow(() -> {
             throw new UsernameNotFoundException("Username/password incorrect");
@@ -50,5 +51,10 @@ public class AuthCandidateUseCase {
             .withExpiresAt(Instant.now().plus(Duration.ofMinutes(10)))
             .sign(algorithm);
 
-    }
+            var authCandidateResponse = AuthCandidateResponseDTO.builder()
+            .acess_token(token)
+            .build();
+
+            return authCandidateResponse;
+        }
 }
