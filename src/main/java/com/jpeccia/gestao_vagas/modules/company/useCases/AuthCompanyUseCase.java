@@ -1,6 +1,7 @@
 package com.jpeccia.gestao_vagas.modules.company.useCases;
 
 import java.time.Instant;
+import java.util.Arrays;
 
 import javax.naming.AuthenticationException;
 
@@ -43,6 +44,7 @@ public class AuthCompanyUseCase {
             var token = JWT.create().withIssuer("jpeccia")
                 .withExpiresAt(Instant.now().plus(java.time.Duration.ofHours(2)))
                 .withSubject(company.getId().toString())
+                .withClaim("roles", Arrays.asList("COMPANY"))
                 .sign(algorithm);
 
             return token;
