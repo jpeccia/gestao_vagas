@@ -14,7 +14,7 @@ public class JWTCandidateProvider {
     private String secretKey;
 
     public DecodedJWT validateToken(String token) {
-        token = token.replace("Bearer", "");
+        token = token.replace("Bearer ", "");
     
         Algorithm algorithm = Algorithm.HMAC256(secretKey);
 
@@ -26,7 +26,7 @@ public class JWTCandidateProvider {
             return tokenDecoded;
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
+            return null; 
         }
 
     }
