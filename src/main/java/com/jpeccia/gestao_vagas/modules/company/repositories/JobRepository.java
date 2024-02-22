@@ -9,5 +9,5 @@ import com.jpeccia.gestao_vagas.modules.company.entities.JobEntity;
 
 public interface JobRepository extends JpaRepository<JobEntity, UUID> {
     
-    List<JobEntity> findByDescriptionContaing(String filter);
+    List<JobEntity> findByDescriptionContaining(String filter);
 }
